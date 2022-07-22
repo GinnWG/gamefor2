@@ -110,25 +110,11 @@ def handle_bullet(red_bullets, yellow_bullets, red, yellow):
             yellow_bullets.remove(bullet)
 
 
-def draw_looser(red_health, yellow_health):
-    looser_health_text = HEALTH_FONT.render(
-        "Health: " + str(0), 1, WHITE
-    )
-    if red_health < yellow_health:
-        WIN.blit(looser_health_text, (20, 20))
-    else:
-        yellow_health_text = HEALTH_FONT.render(
-            "Health: " + str(yellow_health), 1, WHITE
-        )
-        WIN.blit(looser_health_text, (WIDTH - yellow_health_text.get_width() - 20, 20))
-    pygame.display.update()
-
-
 def draw_winner(text):
     winner_text = WINNER_FONT.render(text, 1, WHITE)
     WIN.blit(winner_text, (WIDTH / 2 - winner_text.get_width() / 2, HEIGHT / 2 - winner_text.get_height() / 2))
     pygame.display.update()
-    pygame.time.delay(5000)
+    pygame.time.delay(3000)
 
 
 def main():
@@ -176,9 +162,7 @@ def main():
         if yellow_health < 1:
             winner_text = "RED WINS!"
         if winner_text != "":
-
-            draw_looser(red_health, yellow_health)
-
+            draw_window(red, yellow, red_bullets, yellow_bullets, red_health, yellow_health)
             draw_winner(winner_text)
             break
 
